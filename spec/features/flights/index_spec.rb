@@ -31,6 +31,7 @@ RSpec.describe 'flight index' do
 
     visit '/flights'
   end
+  
   it 'has a list of all flight numbers' do
     expect(page).to have_content @flight_1.number
     expect(page).to have_content @flight_2.number
