@@ -10,13 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_21_174117) do
+ActiveRecord::Schema.define(version: 2021_06_11_141327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "airlines", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "flight_id"
+    t.bigint "passenger_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flight_id"], name: "index_bookings_on_flight_id"
+    t.index ["passenger_id"], name: "index_bookings_on_passenger_id"
+  end
+
+  create_table "competition_entries", force: :cascade do |t|
+    t.bigint "team_id"
+    t.bigint "competition_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competition_id"], name: "index_competition_entries_on_competition_id"
+    t.index ["team_id"], name: "index_competition_entries_on_team_id"
+  end
+
+  create_table "competitions", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.string "sport"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -30,5 +56,33 @@ ActiveRecord::Schema.define(version: 2021_04_21_174117) do
     t.index ["airline_id"], name: "index_flights_on_airline_id"
   end
 
+  create_table "passengers", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "team_id"
+    t.index ["team_id"], name: "index_players_on_team_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "hometown"
+    t.string "nickname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "bookings", "flights"
+  add_foreign_key "bookings", "passengers"
+  add_foreign_key "competition_entries", "competitions"
+  add_foreign_key "competition_entries", "teams"
   add_foreign_key "flights", "airlines"
+  add_foreign_key "players", "teams"
 end
