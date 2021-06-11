@@ -30,23 +30,6 @@ ActiveRecord::Schema.define(version: 2021_06_11_141327) do
     t.index ["passenger_id"], name: "index_bookings_on_passenger_id"
   end
 
-  create_table "competition_entries", force: :cascade do |t|
-    t.bigint "team_id"
-    t.bigint "competition_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["competition_id"], name: "index_competition_entries_on_competition_id"
-    t.index ["team_id"], name: "index_competition_entries_on_team_id"
-  end
-
-  create_table "competitions", force: :cascade do |t|
-    t.string "name"
-    t.string "location"
-    t.string "sport"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "flights", force: :cascade do |t|
     t.string "number"
     t.string "date"
@@ -63,26 +46,7 @@ ActiveRecord::Schema.define(version: 2021_06_11_141327) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "players", force: :cascade do |t|
-    t.string "name"
-    t.integer "age"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "team_id"
-    t.index ["team_id"], name: "index_players_on_team_id"
-  end
-
-  create_table "teams", force: :cascade do |t|
-    t.string "hometown"
-    t.string "nickname"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "bookings", "flights"
   add_foreign_key "bookings", "passengers"
-  add_foreign_key "competition_entries", "competitions"
-  add_foreign_key "competition_entries", "teams"
   add_foreign_key "flights", "airlines"
-  add_foreign_key "players", "teams"
 end
