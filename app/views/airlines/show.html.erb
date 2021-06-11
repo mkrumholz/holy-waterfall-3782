@@ -1,0 +1,5 @@
+<h1><%= @airline.name %></h1>
+
+<% @airline.qualified_passengers.each do |passenger| %> 
+  <%= passenger.name %>
+<% end %>
