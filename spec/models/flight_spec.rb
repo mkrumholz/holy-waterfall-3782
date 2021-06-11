@@ -29,10 +29,6 @@ RSpec.describe Flight, type: :model do
       it 'returns the id of the booking for given passenger' do
         expect(@flight_1.booking_for(@passenger_1.id)).to eq @booking_1.id
       end
-
-      it 'returns an error if passenger has no booking on the flight' do
-        expect(@flight_1.booking_for(@passenger_2.id)).to eq "Error: No booking was found for #{@passenger_2.name} on flight ##{@flight_1.number}."
-      end
     end
   end
 end
