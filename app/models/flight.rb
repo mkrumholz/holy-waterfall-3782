@@ -8,10 +8,6 @@ class Flight < ApplicationRecord
   end
 
   def booking_for(passenger_id)
-    passenger = Passenger.find(passenger_id)
-    booking = bookings.where(passenger: passenger)
-    if booking.present?
-      booking.pluck(:id)[0]
-    end
+    bookings.where(passenger: passenger_id).pluck(:id)[0]
   end
 end
