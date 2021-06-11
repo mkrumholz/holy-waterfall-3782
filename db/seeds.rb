@@ -25,8 +25,11 @@ passenger_1 = flight_1.passengers.create!(name: 'JJ', age: 33)
 passenger_2 = flight_1.passengers.create!(name: 'Molly', age: 31)
 
 # passengers 3 & 4 are on flight 2
-passenger_3 = flight_2.passengers.create!(name: 'Dan', age: 32)
+passenger_3 = flight_2.passengers.create!(name: 'Dan', age: 12)
 passenger_4 = flight_2.passengers.create!(name: 'Joanna', age: 32)
+
+# passenger 5 only has a booking on airline 2
+passenger_5 = flight_4.passengers.create!(name: 'Ophelia', age: 47)
 
 # passengers 1 & 3 are on flight 3
 flight_3.passengers << passenger_1
