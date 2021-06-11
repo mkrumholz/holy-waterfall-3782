@@ -92,7 +92,7 @@ RSpec.describe 'flight index' do
     end
 
     # Ensure passenger 4 is NOT removed from flight 2
-    within "div#flight-#{@flight_4.id}" do
+    within "div#flight-#{@flight_2.id}" do
       expect(page).to have_content(@passenger_4.name)
     end
   end
