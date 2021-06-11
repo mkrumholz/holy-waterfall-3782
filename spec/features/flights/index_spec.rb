@@ -71,4 +71,29 @@ RSpec.describe 'flight index' do
       expect(page).to have_content @passenger_4.name
     end
   end
+
+  it 'can remove a passenger from a flight' do
+    # passenger 4 is on flights 2 and 4
+    expect(page).to have_content(@passenger_4.name, count: 2)
+
+    # remove Joanna (passenger 4) from flight 4
+    within "div#flight-#{@flight_4.id}" do
+      within "div#passenger-#{@passenger_4.id}" do
+        click_button 'Remove passenger'
+      end
+    end
+
+    expect(current_path).to eq '/flights'
+    expect(page).to have_content(@passenger_4.name, count: 1)
+
+    # Ensure passenger 4 has been removed from flight 4
+    within "div#flight-#{@flight_4.id}" do
+      expect(page).to_not have_content(@passenger_4.name)
+    end
+
+    # Ensure passenger 4 is NOT removed from flight 2
+    within "div#flight-#{@flight_4.id}" do
+      expect(page).to have_content(@passenger_4.name)
+    end
+  end
 end
