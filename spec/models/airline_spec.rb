@@ -36,11 +36,11 @@ RSpec.describe Airline, type: :model do
       end
       
       it 'does not include passengers who are minors' do
-        expect(@airline_1.qualified_passengers).to include(@passenger_3)
+        expect(@airline_1.qualified_passengers).to_not include(@passenger_3)
       end
 
       it 'does not include any passengers with no bookings on the airline' do
-        expect(@airline_1.qualified_passengers).to include(@passenger_4)
+        expect(@airline_1.qualified_passengers).to_not include(@passenger_4)
       end
     end
   end
