@@ -6,12 +6,12 @@ RSpec.describe 'flight index' do
     @airline_2 = Airline.create!(name: 'Korean Air')
 
     # flights for airline 1
-    @flight_1 = @airline_1.create!(number: "1234", date: Date.parse('2021-06-01'), departure_city: 'New York', arrival_city: 'Reykjavik')
-    @flight_2 = @airline_1.create!(number: "1345", date: Date.parse('2021-06-07'), departure_city: 'Reykjavik', arrival_city: 'Paris')
+    @flight_1 = @airline_1.flights.create!(number: "1234", date: Date.parse('2021-06-01'), departure_city: 'New York', arrival_city: 'Reykjavik')
+    @flight_2 = @airline_1.flights.create!(number: "1345", date: Date.parse('2021-06-07'), departure_city: 'Reykjavik', arrival_city: 'Paris')
 
     # flights for airline 2
-    @flight_3 = @airline_2.create!(number: "2234", date: Date.parse('2021-06-01'), departure_city: 'Houston', arrival_city: 'Los Angeles')
-    @flight_3 = @airline_2.create!(number: "2345", date: Date.parse('2021-06-07'), departure_city: 'Los Angeles', arrival_city: 'Seoul')
+    @flight_3 = @airline_2.flights.create!(number: "2234", date: Date.parse('2021-06-01'), departure_city: 'Houston', arrival_city: 'Los Angeles')
+    @flight_4 = @airline_2.flights.create!(number: "2345", date: Date.parse('2021-06-07'), departure_city: 'Los Angeles', arrival_city: 'Seoul')
 
     # passengers 1 & 2 are on flight 1
     @passenger_1 = @flight_1.passengers.create!(name: 'JJ', age: 33)
