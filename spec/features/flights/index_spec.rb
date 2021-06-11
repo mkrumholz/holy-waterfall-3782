@@ -59,8 +59,8 @@ RSpec.describe 'flight index' do
       expect(page).to have_content @passenger_2.name
     end
     within "div#flight-#{@flight_2.id}" do
-      expect(page).to have_content @passenger_2.name
       expect(page).to have_content @passenger_3.name
+      expect(page).to have_content @passenger_4.name
     end
     within "div#flight-#{@flight_3.id}" do
       expect(page).to have_content @passenger_1.name
